@@ -19,36 +19,33 @@ class _EmailState extends State<Email> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(20.0),
-      child: TextFormField(
-        validator: (value) {
-          if (value == null || value.isEmpty) {
-            return 'can\'t be empty';
-          }
-        },
-        controller: emailController,
-        decoration: InputDecoration(
-          hintText: 'emailEXAMPLE@email.com',
-          labelText: 'E-Mail',
-          prefixIcon: Icon(Icons.email),
-          suffixIcon: emailController.text.isEmpty
-              ? Container(
-                  width: 0,
-                )
-              : IconButton(
-                  onPressed: () {
-                    emailController.clear();
-                  },
-                  icon: Icon(Icons.close),
-                ),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(30),
-          ),
+    return TextFormField(
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return 'can\'t be empty';
+        }
+      },
+      controller: emailController,
+      decoration: InputDecoration(
+        hintText: 'emailEXAMPLE@email.com',
+        labelText: 'E-Mail',
+        prefixIcon: Icon(Icons.email),
+        suffixIcon: emailController.text.isEmpty
+            ? Container(
+                width: 0,
+              )
+            : IconButton(
+                onPressed: () {
+                  emailController.clear();
+                },
+                icon: Icon(Icons.close),
+              ),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(30),
         ),
-        keyboardType: TextInputType.emailAddress,
-        textInputAction: TextInputAction.next,
       ),
+      keyboardType: TextInputType.emailAddress,
+      textInputAction: TextInputAction.next,
     );
   }
 }
