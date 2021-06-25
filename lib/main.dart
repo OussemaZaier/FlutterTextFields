@@ -30,8 +30,8 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatelessWidget {
-  const MyHomePage({Key? key}) : super(key: key);
-
+  MyHomePage({Key? key}) : super(key: key);
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -40,18 +40,26 @@ class MyHomePage extends StatelessWidget {
         top: 20,
         right: 20,
       ),
-      child: Column(
-        children: [
-          Email(),
-          SizedBox(
-            height: 20,
-          ),
-          Password(),
-          TextButton(
-            onPressed: () {},
-            child: Text('submit'),
-          ),
-        ],
+      child: Form(
+        key: _formKey,
+        child: Column(
+          children: [
+            Email(),
+            SizedBox(
+              height: 20,
+            ),
+            Password(),
+            TextButton(
+              onPressed: () {
+                if (_formKey.currentState!.validate()) {
+                  ScaffoldMessenger.of(context)
+                      .showSnackBar(SnackBar(content: Text('Processing Data')));
+                }
+              },
+              child: Text('submit'),
+            ),
+          ],
+        ),
       ),
     );
   }

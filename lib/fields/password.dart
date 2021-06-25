@@ -13,6 +13,14 @@ class _PasswordState extends State<Password> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return 'can\'t be null';
+        }
+        if (value.length < 6) {
+          return 'at least 6 caracters';
+        }
+      },
       controller: passwordController,
       obscureText: !visible,
       decoration: InputDecoration(
